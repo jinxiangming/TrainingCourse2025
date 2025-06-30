@@ -19,7 +19,8 @@
         /* Added for smooth scrolling and sticky header offset */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 5rem; /* Adjust this value based on your header's actual height */
+            /* Adjust this value dynamically based on header's visibility */
+            scroll-padding-top: 5rem; 
         }
 
         * {
@@ -43,6 +44,13 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Add transition for smooth hide/show */
+            transition: transform 0.3s ease-out; 
+        }
+
+        /* Class to hide the header by moving it up */
+        header.hidden {
+            transform: translateY(-100%);
         }
         
         .navbar {
@@ -433,15 +441,29 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                padding: 1rem;
+                padding: 0.7rem 1rem; /* Reduced padding for smaller header */
             }
             
+            .logo h1 {
+                font-size: 1.3rem; /* Smaller font size for logo */
+            }
+
+            .logo i {
+                font-size: 1.6rem; /* Smaller icon size for logo */
+            }
+
             .nav-menu {
-                margin-top: 1rem;
+                margin-top: 0.8rem; /* Reduced margin-top */
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 0.8rem; /* Reduced gap between nav items */
             }
             
+            .nav-menu a {
+                padding: 0.3rem 0.6rem; /* Reduced padding for nav links */
+                font-size: 0.9rem; /* Smaller font size for nav links */
+            }
+
             .hero h2 {
                 font-size: 2.2rem;
             }
@@ -475,6 +497,11 @@
             .instructor-text {
                 text-align: center;
             }
+            
+            /* Adjust scroll-padding-top for the smaller mobile header */
+            html {
+                scroll-padding-top: 4.5rem; /* Roughly estimated new header height on mobile */
+            }
         }
     </style>
 </head>
@@ -502,6 +529,10 @@
     <section class="hero" id="hero-section"> 
         <h2>金融科技条线岗前培训手册</h2>
         <p>新起点，安全先行。90分钟快速了解你不能忽略的科技风险点</p>
+        <div class="cta-buttons">
+            <a href="#chapter-ai" class="btn btn-primary">立即开始学习</a>
+            <a href="#recommended-books" class="btn btn-secondary">推荐阅读</a>
+        </div>
     </section>
 
     <!-- 主体内容 - 展开式章节 -->
@@ -514,6 +545,7 @@
             <h3>主讲人：靳祥铭</h3>
             <div class="instructor-content">
                 <div class="qr-code-placeholder">
+                    <!-- Image of WeChat QR Code -->
                     <img src="https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/WeChat_ID.jpg" alt="微信二维码" style="width:100%; height:100%; object-fit: contain;">
                 </div>
                 <div class="instructor-text">
@@ -628,7 +660,7 @@
                         <li><strong>银行内部网络分为：</strong>
                             <ul style="margin-top: 10px;">
                                 <li><strong>生产网络</strong>：用于实际业务运行</li>
-                                <li><li><strong>办公网络</strong>：用于收发邮件、文件传输</li></li>
+                                <li><strong>办公网络</strong>：用于收发邮件、文件传输</li>
                                 <li><strong>视频监控网络</strong>：用于安全监控</li>
                             </ul>
                         </li>
@@ -806,7 +838,8 @@
             ].filter(item => item.element); // Filter out any elements that might not exist in the DOM
 
             const navLinks = document.querySelectorAll('.nav-menu a');
-            const headerHeight = document.querySelector('header').offsetHeight; // Get the dynamic height of the sticky header
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight; // Get the dynamic height of the sticky header
 
             let activeSectionId = 'hero-section'; // Default active section to '首页' (hero-section)
 
@@ -834,6 +867,26 @@
             });
         }
 
+        let lastScrollY = 0; // Variable to store the last scroll position
+        const header = document.querySelector('header'); // Get the header element
+
+        // Function to handle header visibility on scroll
+        function handleHeaderVisibility() {
+            const currentScrollY = window.scrollY;
+
+            // If scrolling down AND past a certain threshold (e.g., header height), hide the header
+            // This prevents the header from hiding immediately on small scrolls at the top
+            if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                header.classList.add('hidden');
+            } 
+            // If scrolling up OR at the very top of the page, show the header
+            else if (currentScrollY < lastScrollY || currentScrollY === 0) {
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollY = currentScrollY; // Update the last scroll position
+        }
+
         // DOMContentLoaded event listener ensures the script runs after the entire HTML is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Add click event listener to all internal anchor links for smooth scrolling
@@ -850,6 +903,12 @@
 
             // Add scroll event listener to update active navigation link dynamically
             window.addEventListener('scroll', activateNavLinkOnScroll);
+
+            // Add scroll event listener for header visibility
+            window.addEventListener('scroll', handleHeaderVisibility);
+
+            // Ensure header is visible on initial load
+            header.classList.remove('hidden');
         });
 
         // Function to toggle chapter body visibility
