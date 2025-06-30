@@ -196,9 +196,9 @@
         .instructor-intro {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Slightly less pronounced shadow */
-            margin-bottom: 2.5rem; /* Reduced margin */
-            padding: 2rem; /* Reduced padding */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem; /* Compressed margin-bottom */
+            padding: 1.5rem; /* Compressed padding */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -206,35 +206,36 @@
         }
 
         .instructor-intro h3 {
-            font-size: 1.8rem; /* Slightly reduced font size */
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 1.2rem; /* Reduced margin */
+            margin-bottom: 1rem; /* Compressed margin-bottom */
         }
 
         .instructor-content {
             display: flex;
-            flex-direction: row; /* Changed to row for desktop */
-            align-items: center; /* Align items to center vertically */
-            gap: 2.5rem; /* Adjusted gap */
+            flex-direction: row; 
+            align-items: flex-start; /* Align items to the top to raise QR code */
+            gap: 2rem; /* Adjusted gap */
             width: 100%;
-            max-width: 800px; /* Constrain width for better layout */
-            margin-top: 1rem;
+            max-width: 800px;
+            margin-top: 0.5rem; /* Compressed margin-top */
         }
 
         .instructor-text {
-            text-align: left; /* Keep left aligned */
-            flex: 1; /* Allow text to take available space */
+            text-align: left;
+            flex: 1;
+            padding-top: 0.5rem; /* Slightly adjust padding to align with QR code top */
         }
 
         .instructor-text p {
-            font-size: 1rem; /* Slightly reduced font size */
+            font-size: 1rem;
             color: #555;
-            margin-bottom: 0.8rem; /* Reduced margin */
+            margin-bottom: 0.5rem; /* Compressed margin-bottom */
         }
 
         .qr-code-placeholder {
-            width: 200px; /* Increased size */
-            height: 200px; /* Increased size */
+            width: 200px; 
+            height: 200px; 
             background-color: var(--gray);
             border-radius: 8px;
             display: flex;
@@ -368,7 +369,7 @@
         }
         
         .book-cover {
-            height: 250px; /* Adjusted height for book cover aspect ratio */
+            height: 420px; /* Adjusted height for a common 2:3 book cover aspect ratio (e.g., 280px width * 1.5) */
             width: 100%;
             background-color: var(--gray); /* Placeholder color */
             display: flex;
@@ -383,9 +384,9 @@
         }
         
         /* Placeholder for book cover images */
-        .book-cover.placeholder-1 { background-image: url('https://placehold.co/300x400/e0e0e0/333333?text=书籍封面1'); }
-        .book-cover.placeholder-2 { background-image: url('https://placehold.co/300x400/d0d0d0/333333?text=书籍封面2'); }
-        .book-cover.placeholder-3 { background-image: url('https://placehold.co/300x400/c0c0c0/333333?text=书籍封面3'); }
+        .book-cover.placeholder-1 { background-image: url('https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/%E5%AD%A6%E4%BC%9A%E6%8F%90%E9%97%AE.jpg'); } /* Updated placeholder image URL for 2:3 ratio */
+        .book-cover.placeholder-2 { background-image: url('https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/%E5%8E%9F%E5%AD%90%E4%B9%A0%E6%83%AF.jpg'); } /* Updated placeholder image URL for 2:3 ratio */
+        .book-cover.placeholder-3 { background-image: url('https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/%E6%B7%B1%E5%BA%A6%E5%B7%A5%E4%BD%9C.jpg'); } /* Updated placeholder image URL for 2:3 ratio */
 
 
         .book-content {
@@ -468,6 +469,7 @@
 
             .instructor-content {
                 flex-direction: column; /* Keep column for mobile */
+                align-items: center; /* Center items for mobile */
             }
             
             .instructor-text {
@@ -485,7 +487,7 @@
                 <h1>金融科技新员工培训</h1>
             </div>
             <ul class="nav-menu">
-                <li><a href="#hero-section">首页</a></li> <!-- Changed href to hero-section -->
+                <li><a href="#hero-section">首页</a></li> 
                 <li><a href="#instructor-intro">讲师介绍</a></li>
                 <li><a href="#chapter1">学会提问</a></li>
                 <li><a href="#chapter2">养成习惯</a></li>
@@ -497,7 +499,7 @@
     </header>
 
     <!-- 首页导语区 -->
-    <section class="hero" id="hero-section"> <!-- Added id="hero-section" -->
+    <section class="hero" id="hero-section"> 
         <h2>金融科技条线岗前培训手册</h2>
         <p>新起点，安全先行。90分钟快速了解你不能忽略的科技风险点</p>
     </section>
@@ -509,16 +511,14 @@
             <h2>讲师介绍</h2>
         </div>
         <div class="instructor-intro">
-            <h3>主讲人：靳祥铭</h3>
+            <h3>主讲人：您的姓名</h3>
             <div class="instructor-content">
                 <div class="qr-code-placeholder">
-                    您的微信二维码
-                    <br>
-                    (空白图片替代)
+                    <img src="https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/WeChat_ID.jpg" alt="微信二维码" style="width:100%; height:100%; object-fit: contain;">
                 </div>
                 <div class="instructor-text">
+                    <p>目前在金融科技部工作，负责行内IT安全、设备管理等业务。</p>
                     <p>联系电话：18639113696</p>
-                    <p>金融科技部，负责行内IT安全、设备管理等业务。</p>
                 </div>
             </div>
         </div>
@@ -627,7 +627,7 @@
                         <li><strong>银行内部网络分为：</strong>
                             <ul style="margin-top: 10px;">
                                 <li><strong>生产网络</strong>：用于实际业务运行</li>
-                                <li><strong>办公网络</strong>：用于收发邮件、文件传输</li>
+                                <li><li><strong>办公网络</strong>：用于收发邮件、文件传输</li></li>
                                 <li><strong>视频监控网络</strong>：用于安全监控</li>
                             </ul>
                         </li>
