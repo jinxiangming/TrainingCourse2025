@@ -502,6 +502,69 @@
             html {
                 scroll-padding-top: 4.5rem; /* Roughly estimated new header height on mobile */
             }
+
+            /* Further mobile optimization for content sections */
+            .container {
+                padding: 0 1rem; /* Reduce horizontal padding for more content space */
+            }
+
+            .sub-section {
+                padding: 1rem; /* Adjust padding within sub-sections */
+            }
+
+            .sub-section h4 {
+                font-size: 1.2rem; /* Slightly smaller heading for sub-sections */
+                margin-bottom: 0.8rem;
+            }
+
+            .sub-section li {
+                padding: 0.6rem 0; /* Adjust vertical padding for list items */
+                padding-left: 1.5rem; /* Reduce left padding for list item bullets */
+                font-size: 0.9rem; /* Smaller font size for list items */
+                line-height: 1.4; /* Slightly tighter line height */
+            }
+
+            .sub-section li::before {
+                font-size: 1.3rem; /* Smaller bullet point */
+                top: 0.4rem;
+            }
+
+            .highlight-box {
+                padding: 1rem; /* Adjust padding for highlight boxes */
+                margin: 1rem 0;
+            }
+
+            .highlight-box i {
+                font-size: 1.3rem; /* Smaller icon in highlight box */
+                min-width: 25px;
+            }
+
+            .chapter-body {
+                padding: 1.5rem; /* Reduce padding inside collapsed chapters */
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr; /* Stack book cards vertically on small screens */
+                gap: 1.5rem;
+            }
+
+            .book-cover {
+                height: 300px; /* Adjust book cover height for mobile */
+            }
+
+            .book-content {
+                padding: 1.2rem; /* Adjust padding within book cards */
+            }
+            .book-content h3 {
+                font-size: 1.2rem; /* Smaller book title */
+            }
+            .book-content p {
+                font-size: 0.9rem; /* Smaller book description font */
+            }
+            .btn {
+                padding: 0.7rem 1.8rem; /* Smaller button padding */
+                font-size: 1rem; /* Smaller button font size */
+            }
         }
     </style>
 </head>
