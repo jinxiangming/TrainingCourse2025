@@ -509,7 +509,8 @@
             }
 
             .sub-section {
-                padding: 1rem; /* Adjust padding within sub-sections */
+                /* Reduce horizontal padding */
+                padding: 1rem 1rem; 
             }
 
             .sub-section h4 {
@@ -517,16 +518,21 @@
                 margin-bottom: 0.8rem;
             }
 
+            .sub-section ul {
+                padding-left: 1rem; /* Adjust list padding */
+            }
+
             .sub-section li {
-                padding: 0.6rem 0; /* Adjust vertical padding for list items */
-                padding-left: 1.5rem; /* Reduce left padding for list item bullets */
+                padding: 0.5rem 0; /* Adjust vertical padding for list items */
+                padding-left: 1.5rem; /* Keep left padding for bullet points */
                 font-size: 0.9rem; /* Smaller font size for list items */
-                line-height: 1.4; /* Slightly tighter line height */
+                line-height: 1.5; /* Increased line height for better readability */
+                word-break: break-word; /* Ensure long words break */
             }
 
             .sub-section li::before {
                 font-size: 1.3rem; /* Smaller bullet point */
-                top: 0.4rem;
+                top: 0.3rem; /* Adjust vertical alignment of bullet */
             }
 
             .highlight-box {
@@ -609,8 +615,8 @@
             <h3>主讲人：靳祥铭</h3>
             <div class="instructor-content">
                 <div class="qr-code-placeholder">
-                    <!-- Image of WeChat QR Code -->
-                    <img src="https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/WeChat_ID.jpg" alt="微信二维码" style="width:100%; height:100%; object-fit: contain;">
+                    <!-- Image of WeChat QR Code with lazy loading -->
+                    <img src="https://github.com/jinxiangming/TrainingCourse2025/raw/b318d94c841442f139877915ca7be36528dbb326/Pic/WeChat_ID.jpg" alt="微信二维码" style="width:100%; height:100%; object-fit: contain;" loading="lazy">
                 </div>
                 <div class="instructor-text">
                     <p>联系电话：18639113696</p>
