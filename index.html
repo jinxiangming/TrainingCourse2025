@@ -530,7 +530,8 @@
         <h2>金融科技条线岗前培训手册</h2>
         <p>新起点，安全先行。90分钟快速了解你不能忽略的科技风险点</p>
         <div class="cta-buttons">
-            <a href="#chapter-ai" class="btn btn-primary">立即开始学习</a>
+            <!-- Corrected href to target the first chapter of core content -->
+            <a href="#chapter1" class="btn btn-primary">立即开始学习</a>
             <a href="#recommended-books" class="btn btn-secondary">推荐阅读</a>
         </div>
     </section>
@@ -874,13 +875,19 @@
         function handleHeaderVisibility() {
             const currentScrollY = window.scrollY;
 
-            // If scrolling down AND past a certain threshold (e.g., header height), hide the header
-            // This prevents the header from hiding immediately on small scrolls at the top
-            if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
-                header.classList.add('hidden');
-            } 
-            // If scrolling up OR at the very top of the page, show the header
-            else if (currentScrollY < lastScrollY || currentScrollY === 0) {
+            // Only apply hiding/showing logic on mobile (screen width <= 768px)
+            if (window.innerWidth <= 768) {
+                // If scrolling down AND past a certain threshold (e.g., header height), hide the header
+                // This prevents the header from hiding immediately on small scrolls at the top
+                if (currentScrollY > lastScrollY && currentScrollY > header.offsetHeight) {
+                    header.classList.add('hidden');
+                } 
+                // If scrolling up OR at the very top of the page, show the header
+                else if (currentScrollY < lastScrollY || currentScrollY === 0) {
+                    header.classList.remove('hidden');
+                }
+            } else {
+                // On PC (screen width > 768px), ensure header is always visible
                 header.classList.remove('hidden');
             }
             
@@ -907,8 +914,11 @@
             // Add scroll event listener for header visibility
             window.addEventListener('scroll', handleHeaderVisibility);
 
-            // Ensure header is visible on initial load
-            header.classList.remove('hidden');
+            // Also check header visibility on window resize, in case user switches between mobile/desktop view
+            window.addEventListener('resize', handleHeaderVisibility);
+
+            // Ensure header is visible on initial load based on current screen size
+            handleHeaderVisibility();
         });
 
         // Function to toggle chapter body visibility
