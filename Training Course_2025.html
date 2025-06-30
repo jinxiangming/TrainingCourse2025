@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融科技岗前培训手册</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #2e7d32;
+            --accent: #d32f2f;
+            --light: #f5f9ff;
+            --dark: #0a2a53;
+            --gray: #e0e0e0;
+            --light-blue: #e3f2fd;
+        }
+        
+        /* Added for smooth scrolling and sticky header offset */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem; /* Adjust this value based on your header's actual height */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 顶部导航栏 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: #ffd54f;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .nav-menu a.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* 导语区 */
+        .hero {
+            background: linear-gradient(rgba(26, 75, 140, 0.9), rgba(10, 42, 83, 0.95)), 
+                        url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3') no-repeat center/cover;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: #ffd54f;
+            color: var(--dark);
+            border: 2px solid #ffd54f;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #ffd54f;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+        
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding: 0 1.5rem;
+            background: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray);
+            z-index: 1;
+        }
+        
+        /* 讲师介绍区 */
+        .instructor-intro {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Slightly less pronounced shadow */
+            margin-bottom: 2.5rem; /* Reduced margin */
+            padding: 2rem; /* Reduced padding */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instructor-intro h3 {
+            font-size: 1.8rem; /* Slightly reduced font size */
+            color: var(--primary);
+            margin-bottom: 1.2rem; /* Reduced margin */
+        }
+
+        .instructor-content {
+            display: flex;
+            flex-direction: row; /* Changed to row for desktop */
+            align-items: center; /* Align items to center vertically */
+            gap: 2.5rem; /* Adjusted gap */
+            width: 100%;
+            max-width: 800px; /* Constrain width for better layout */
+            margin-top: 1rem;
+        }
+
+        .instructor-text {
+            text-align: left; /* Keep left aligned */
+            flex: 1; /* Allow text to take available space */
+        }
+
+        .instructor-text p {
+            font-size: 1rem; /* Slightly reduced font size */
+            color: #555;
+            margin-bottom: 0.8rem; /* Reduced margin */
+        }
+
+        .qr-code-placeholder {
+            width: 200px; /* Increased size */
+            height: 200px; /* Increased size */
+            background-color: var(--gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #777;
+            border: 1px dashed #ccc;
+            flex-shrink: 0;
+        }
+        
+        /* 章节内容样式 - 核心内容展开 */
+        .chapter-content {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .chapter-header {
+            padding: 1.8rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+        
+        .chapter-1 .chapter-header { background: linear-gradient(135deg, #1a4b8c, #3f51b5); }
+        .chapter-2 .chapter-header { background: linear-gradient(135deg, #2e7d32, #43a047); }
+        .chapter-3 .chapter-header { background: linear-gradient(135deg, #d32f2f, #f57c00); }
+        .chapter-ai .chapter-header { background: linear-gradient(135deg, #673ab7, #9c27b0); } /* New AI section gradient */
+        
+        .chapter-header i {
+            font-size: 2.5rem;
+        }
+        
+        .chapter-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .chapter-body {
+            padding: 2rem;
+            display: none;
+        }
+        
+        .chapter-body.active {
+            display: block;
+        }
+        
+        .sub-section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .sub-section h4 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sub-section ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        
+        .sub-section li {
+            position: relative;
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            border-bottom: 1px dashed #d0d0d0;
+        }
+        
+        .sub-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .sub-section li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: #fff8e1;
+            border: 1px solid #ffd54f;
+            border-radius: 6px;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .highlight-box i {
+            color: #ffa000;
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+        
+        /* 推荐阅读区 */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .book-cover {
+            height: 250px; /* Adjusted height for book cover aspect ratio */
+            width: 100%;
+            background-color: var(--gray); /* Placeholder color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #777;
+            border-bottom: 1px solid #eee;
+            background-size: cover; /* Ensure image covers the area */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+        }
+        
+        /* Placeholder for book cover images */
+        .book-cover.placeholder-1 { background-image: url('https://placehold.co/300x400/e0e0e0/333333?text=书籍封面1'); }
+        .book-cover.placeholder-2 { background-image: url('https://placehold.co/300x400/d0d0d0/333333?text=书籍封面2'); }
+        .book-cover.placeholder-3 { background-image: url('https://placehold.co/300x400/c0c0c0/333333?text=书籍封面3'); }
+
+
+        .book-content {
+            padding: 1.8rem;
+        }
+        
+        .book-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .book-1 .book-category { background: #d1c4e9; color: #4527a0; }
+        .book-2 .book-category { background: #c8e6c9; color: #2e7d32; }
+        .book-3 .book-category { background: #ffccbc; color: #e65100; }
+        
+        .book-content h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .book-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .chapter-header {
+                padding: 1.2rem;
+            }
+            
+            .chapter-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .instructor-content {
+                flex-direction: column; /* Keep column for mobile */
+            }
+            
+            .instructor-text {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>金融科技新员工培训</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero-section">首页</a></li> <!-- Changed href to hero-section -->
+                <li><a href="#instructor-intro">讲师介绍</a></li>
+                <li><a href="#chapter1">学会提问</a></li>
+                <li><a href="#chapter2">养成习惯</a></li>
+                <li><a href="#chapter3">学习方法</a></li>
+                <li><a href="#chapter-ai">AI与工具</a></li>
+                <li><a href="#recommended-books">推荐阅读</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 首页导语区 -->
+    <section class="hero" id="hero-section"> <!-- Added id="hero-section" -->
+        <h2>金融科技条线岗前培训手册</h2>
+        <p>新起点，安全先行。90分钟快速了解你不能忽略的科技风险点</p>
+    </section>
+
+    <!-- 主体内容 - 展开式章节 -->
+    <div class="container">
+        <!-- 讲师介绍 -->
+        <div class="section-title" id="instructor-intro">
+            <h2>讲师介绍</h2>
+        </div>
+        <div class="instructor-intro">
+            <h3>主讲人：靳祥铭</h3>
+            <div class="instructor-content">
+                <div class="qr-code-placeholder">
+                    您的微信二维码
+                    <br>
+                    (空白图片替代)
+                </div>
+                <div class="instructor-text">
+                    <p>联系电话：18639113696</p>
+                    <p>金融科技部，负责行内IT安全、设备管理等业务。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>培训核心内容</h2>
+        </div>
+        
+        <!-- 第一章：学会正确提问 -->
+        <div class="chapter-content chapter-1" id="chapter1">
+            <div class="chapter-header" onclick="toggleChapter('chapter1')">
+                <i class="fas fa-question-circle"></i>
+                <div>
+                    <h3>第一章：学会正确提问</h3>
+                    <p>你不知道的，恰恰最危险</p>
+                </div>
+            </div>
+            <div class="chapter-body" id="chapter1-body">
+                <!-- 1.1 数据安全意识 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-database"></i> 1.1 数据安全意识</h4>
+                    <ul>
+                        <li><strong>敏感数据包括</strong>：客户姓名、身份证号、银行卡号、交易记录、电话号码、账户余额等。</li>
+                        <li><strong>数据处理规范</strong>：不得复制、外传敏感数据，不使用个人邮箱、微信等外部工具传输或保存敏感内容。</li>
+                        <li><strong>电子数据销毁</strong>：删除不等于销毁，必须使用专用清理工具进行彻底清除。</li>
+                        <li><strong>纸质资料处理</strong>：含有客户信息的需进行粉碎处理，禁止丢弃入普通垃圾桶。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>请示提醒：</strong>不确定是否属于敏感数据的，必须请示部门负责人或信息安全人员。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1.2 钓鱼邮件与病毒防范 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-envelope"></i> 1.2 钓鱼邮件与病毒防范</h4>
+                    <ul>
+                        <li>收到声称为"领导"、"IT支持"的邮件要求点击链接或下载附件时，<strong>先确认来源是否属实</strong>。</li>
+                        <li>不随意插入来源不明的U盘、移动硬盘等设备。</li>
+                        <li>禁止使用"破解软件"、"第三方插件"等工具，它们极可能包含病毒或恶意代码。</li>
+                        <li>所有软件安装必须通过银行统一的终端管理平台完成。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>请示提醒：</strong>不确定邮件是否真实？不确定软件是否合规？必须停下并请示，不要因好心办错事。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1.3 不熟悉就请示 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 1.3 不熟悉就请示，是责任感的表现</h4>
+                    <ul>
+                        <li>改动设备设置（如IP地址、DNS配置）需经过批准，<strong>不允许擅自更改</strong>。</li>
+                        <li>不熟悉设备用途、线路归属时，不要连接、挪动、拆卸。</li>
+                        <li>日常中遇到"看起来可能是小问题"的情况，也可能是系统性故障的开端。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>请示提醒：</strong>不知道该不该动的时候，答案一定是"不要动"。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二章：学会养成习惯 -->
+        <div class="chapter-content chapter-2" id="chapter2">
+            <div class="chapter-header" onclick="toggleChapter('chapter2')">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <h3>第二章：学会养成习惯</h3>
+                    <p>安全不是制度，是你每天的动作</p>
+                </div>
+            </div>
+            <div class="chapter-body" id="chapter2-body">
+                <!-- 2.1 终端安全操作规范 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-laptop"></i> 2.1 终端安全操作规范</h4>
+                    <ul>
+                        <li>每日开机后确认安全客户端是否正常运行，是否提示病毒库需要更新。</li>
+                        <li>使用U盘前，需确认是否为银行登记设备。不得使用个人U盘处理银行业务数据。</li>
+                        <li>未经允许不得自行在终端安装、卸载任何软件。</li>
+                        <li>禁止私自更换鼠标、键盘、显示器以外的硬件（如更换网卡、加装存储设备）。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>建议：</strong>将这些步骤融入每日工作流程中，形成"安全操作顺手做"的习惯。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2.2 网络环境管理要点 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-network-wired"></i> 2.2 网络环境管理要点</h4>
+                    <ul>
+                        <li><strong>银行内部网络分为：</strong>
+                            <ul style="margin-top: 10px;">
+                                <li><strong>生产网络</strong>：用于实际业务运行</li>
+                                <li><strong>办公网络</strong>：用于收发邮件、文件传输</li>
+                                <li><strong>视频监控网络</strong>：用于安全监控</li>
+                            </ul>
+                        </li>
+                        <li>不同网络之间<strong>物理隔离</strong>，禁止跨网连接或切换。</li>
+                        <li>禁止将办公设备连接至互联网热点或家庭网络。</li>
+                        <li>网络机柜内布线应整齐规范，不得私自拔插。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>请示提醒：</strong>不清楚一根网线属于哪个网络？不要尝试连接，必须上报核实。
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2.3 IT设备管理守则 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-server"></i> 2.3 IT设备管理守则</h4>
+                    <ul>
+                        <li>仅允许银行配发的设备接入内部网络。</li>
+                        <li>禁止使用家庭电脑或其他个人设备进行银行业务处理。</li>
+                        <li>所有设备调动（搬移、连接更换）需登记备案。</li>
+                        <li>外设（打印机、摄像头）也应纳入终端统一管理范围。</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>请示提醒：</strong>不清楚设备是否允许接入？不清楚能否连线？先问清楚。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三章：学会如何学习 (标题已修改) -->
+        <div class="chapter-content chapter-3" id="chapter3">
+            <div class="chapter-header" onclick="toggleChapter('chapter3')">
+                <i class="fas fa-graduation-cap"></i>
+                <div>
+                    <h3>第三章：学会如何学习</h3>
+                    <p>安全是一种能力，不是负担</p>
+                </div>
+            </div>
+            <div class="chapter-body" id="chapter3-body">
+                <!-- 3.1 学习力是一种工作竞争力 -->
+                <div class="sub-section">
+                    <h4><i class="fas fa-chart-line"></i> 3.1 学习力是一种工作竞争力</h4>
+                    <ul>
+                        <li>每日抽出10分钟浏览系统通知、网络安全提醒等内容。</li>
+                        <li>善于搜索资料、咨询他人，而不是自行摸索。</li>
+                        <li>建立"问题记录本"，把每次请示的问题与答案记录下来。</li>
+                        <li>遇到陌生名词或技术内容时，敢于问，敢于查，不懂不硬撑。</li>
+                    </ul>
+                    
+                    <div class="highlight-box" style="margin-top: 2rem;">
+                        <i class="fas fa-book"></i>
+                        <div>
+                            <strong>推荐阅读：</strong>
+                            <ul style="margin-top: 10px;">
+                                <li>《学会提问》——培养批判性思维的关键技能</li>
+                                <li>《原子习惯》——微小改变带来巨大成果</li>
+                                <li>《深度工作》——在碎片化时代保持专注力</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI与工具模块 (独立展示) -->
+        <div class="section-title" id="chapter-ai">
+            <h2>AI与工具</h2>
+        </div>
+        <div class="chapter-content chapter-ai">
+            <div class="chapter-header" onclick="toggleChapter('chapter-ai')">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <h3>AI与工具：善用工具提升效率，但不要跨越安全边界</h3>
+                    <p>拥抱技术，警惕风险</p>
+                </div>
+            </div>
+            <div class="chapter-body" id="chapter-ai-body">
+                <div class="sub-section">
+                    <h4><i class="fas fa-tools"></i> 善用工具提升效率</h4>
+                    <ul>
+                        <li>鼓励使用内部低代码平台、RPA工具、合规AI助手优化流程。</li>
+                        <li>AI可用于文稿撰写、知识查询、流程建议，但不能处理真实客户数据。</li>
+                    </ul>
+                    <div class="highlight-box" style="background-color: #e8f5e9; border-color: #4caf50;">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>鼓励创新，但需：</strong>事前报备、安全评估、试点运行。
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-section">
+                    <h4><i class="fas fa-shield-alt"></i> AI工具的安全边界</h4>
+                    <ul>
+                        <li>禁止将银行数据粘贴至公共AI平台（如GPT网页版、百度文心一言等）。</li>
+                        <li>DeepSeek、ChatGPT等通用AI模型在未经授权的情况下，<strong>严禁用于处理任何敏感或机密的银行内部信息</strong>。</li>
+                        <li>在使用任何外部AI工具前，务必<strong>仔细阅读其隐私政策和服务条款</strong>，确保其符合银行的数据安全要求。</li>
+                        <li>如需使用AI工具处理工作相关内容，请务必使用<strong>银行内部部署的、经过安全审计的AI平台</strong>。</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>重要提示：</strong>任何违反数据安全规定的行为都将承担相应责任。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推荐阅读区 -->
+    <div class="container" id="recommended-books">
+        <div class="section-title">
+            <h2>推荐阅读</h2>
+        </div>
+        
+        <div class="books-grid">
+            <div class="book-card">
+                <div class="book-cover placeholder-1"></div>
+                <div class="book-content">
+                    <span class="book-category">批判性思维</span>
+                    <h3>《学会提问》</h3>
+                    <p>本书系统地教你如何提出批判性问题，帮助你提升分析和判断能力，在信息洪流中保持清醒，避免被误导。</p>
+                    <a href="https://example.com/download/book1.pdf" class="btn btn-primary" download>点击下载</a>
+                </div>
+            </div>
+            
+            <div class="book-card">
+                <div class="book-cover placeholder-2"></div>
+                <div class="book-content">
+                    <span class="book-category">习惯养成</span>
+                    <h3>《原子习惯》</h3>
+                    <p>微小的改变，显著的效果。本书将教你如何通过小习惯构建强大的人生系统，实现持续进步，培养安全操作习惯。</p>
+                    <a href="https://example.com/download/book2.pdf" class="btn btn-primary" download>点击下载</a>
+                </div>
+            </div>
+            
+            <div class="book-card">
+                <div class="book-cover placeholder-3"></div>
+                <div class="book-content">
+                    <span class="book-category">专注力训练</span>
+                    <h3>《深度工作》</h3>
+                    <p>在碎片化时代如何保持专注？本书提供了深度工作的理念和实用策略，助你高效产出，提升工作质量。</p>
+                    <a href="https://example.com/download/book3.pdf" class="btn btn-primary" download>点击下载</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="copyright">
+            <p>© 2023 金融科技新员工培训手册 | 安全不是"管得严"，而是"走得远"</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to activate the current navigation link based on scroll position
+        function activateNavLinkOnScroll() {
+            // Define all sections that correspond to navigation links
+            const sections = [
+                { id: 'hero-section', element: document.getElementById('hero-section') }, // Corresponds to "首页"
+                { id: 'instructor-intro', element: document.getElementById('instructor-intro') },
+                { id: 'chapter1', element: document.getElementById('chapter1') },
+                { id: 'chapter2', element: document.getElementById('chapter2') },
+                { id: 'chapter3', element: document.getElementById('chapter3') },
+                { id: 'chapter-ai', element: document.getElementById('chapter-ai') },
+                { id: 'recommended-books', element: document.getElementById('recommended-books') }
+            ].filter(item => item.element); // Filter out any elements that might not exist in the DOM
+
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            const headerHeight = document.querySelector('header').offsetHeight; // Get the dynamic height of the sticky header
+
+            let activeSectionId = 'hero-section'; // Default active section to '首页' (hero-section)
+
+            // Iterate through sections from bottom to top to find the most prominent one in view
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i].element;
+                const rect = section.getBoundingClientRect();
+                
+                // Check if the section's top edge is at or above the adjusted viewport top (considering header height)
+                // A small buffer (20px) is added to ensure the section is clearly visible below the header before activating.
+                if (rect.top <= headerHeight + 20) {
+                    activeSectionId = sections[i].id;
+                    break; // Found the section, exit loop
+                }
+            }
+
+            // Update the 'active' class on navigation links
+            navLinks.forEach(link => {
+                link.classList.remove('active'); // Remove active from all links first
+                const linkHrefId = link.getAttribute('href').substring(1); // Get the ID from the href (e.g., 'hero-section', 'chapter1')
+
+                if (linkHrefId === activeSectionId) {
+                    link.classList.add('active'); // Add active class to the matching link
+                }
+            });
+        }
+
+        // DOMContentLoaded event listener ensures the script runs after the entire HTML is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event listener to all internal anchor links for smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Prevent default anchor jump, as CSS scroll-behavior and scroll-padding-top will handle it
+                    // This also prevents direct URL hash changes if you want to control history manually.
+                    // For this case, we rely on CSS for scrolling.
+                });
+            });
+
+            // Set the initial active navigation link when the page loads
+            activateNavLinkOnScroll();
+
+            // Add scroll event listener to update active navigation link dynamically
+            window.addEventListener('scroll', activateNavLinkOnScroll);
+        });
+
+        // Function to toggle chapter body visibility
+        function toggleChapter(chapterId) {
+            const body = document.getElementById(`${chapterId}-body`);
+            body.classList.toggle('active');
+            
+            // If the chapter body is active, scroll to its corresponding chapter header
+            // scroll-padding-top in CSS will automatically handle the offset for sticky header
+            if (body.classList.contains('active')) {
+                const targetElement = document.getElementById(chapterId); // The parent section element
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
